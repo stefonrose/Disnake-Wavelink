@@ -34,7 +34,7 @@ from typing import (
     overload,
 )
 
-from discord.ext import commands
+from disnake.ext import commands
 
 from .abc import *
 from .pool import Node, NodePool
@@ -195,7 +195,7 @@ class SearchableTrack(Track, Searchable):
     async def convert(cls: Type[ST], ctx: commands.Context, argument: str) -> ST:
         """Converter which searches for and returns the first track.
 
-        Used as a type hint in a discord.py command.
+        Used as a type hint in a disnake.py command.
         """
         if argument.startswith('local:'):
             argument.replace('local:', '')
