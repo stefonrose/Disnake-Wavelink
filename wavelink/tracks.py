@@ -88,7 +88,7 @@ class Track(Playable):
         self.identifier: Optional[str] = info.get("identifier")
         self.uri: Optional[str] = info.get("uri")
         self.author: Optional[str] = info.get("author")
-        self.requester: Optional[Union[disnake.User, disnake.Member]] = None
+        self.requester: Optional[Union[User, Member]] = None
         self.requested: Optional[datetime]
 
         self._stream: bool = info.get("isStream")  # type: ignore
@@ -101,7 +101,7 @@ class Track(Playable):
         """Indicates whether the track is a stream or not."""
         return self._stream
 
-    def set_requester(self, requester: Union[disnake.User, disnake.Member]):
+    def set_requester(self, requester: Union[User, Member]):
         self.requester = requester
 
     def set_requested(self, requested: Optional[datetime]):
