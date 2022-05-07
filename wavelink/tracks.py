@@ -88,7 +88,7 @@ class Track(Playable):
         self.identifier: Optional[str] = info.get("identifier")
         self.uri: Optional[str] = info.get("uri")
         self.author: Optional[str] = info.get("author")
-        self.requester: Optional[Union[User, Member]] = None
+        self.requester: Optional[Union[User, Member]]
         self.requested: Optional[datetime]
 
         self._stream: bool = info.get("isStream")  # type: ignore
