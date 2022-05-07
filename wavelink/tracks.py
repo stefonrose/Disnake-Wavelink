@@ -33,7 +33,8 @@ from typing import (
     Union,
     overload,
 )
-
+from datetime import datetime
+from disnake import User, Member
 from disnake.ext import commands
 
 from .abc import *
@@ -87,6 +88,8 @@ class Track(Playable):
         self.identifier: Optional[str] = info.get("identifier")
         self.uri: Optional[str] = info.get("uri")
         self.author: Optional[str] = info.get("author")
+        self.requester: Optional[Union[disnake.User, disnake.Member]] = None
+        self.requested: Optional[datetime]
 
         self._stream: bool = info.get("isStream")  # type: ignore
         self._dead: bool = False
@@ -97,6 +100,12 @@ class Track(Playable):
     def is_stream(self) -> bool:
         """Indicates whether the track is a stream or not."""
         return self._stream
+
+    def set_requester(self, requester: Union[disnake.User, disnake.Member]):
+        self.requester = requester
+
+    def set_requested(self, requested: Optional[datetime]):
+        self.requested = requested
 
 
 class SearchableTrack(Track, Searchable):
